@@ -4,11 +4,11 @@
 
 class Time
 {
-            
+      //Jacob, could you please do the UML for this class
+	 //thanks
       private:
               int hour;  //0-23 (24 hour clock format)
               int minute; //0-59
-              int second; //0-59
       
       public:
              //default constructor
@@ -19,12 +19,10 @@ class Time
              Time& setTime(int, int, int);
              Time& setHour(int);
              Time& setMinute(int);
-             Time& setSecond(int);
              
              //get functions - (normally always declared const)
              int getHour() const;
              int getMinute() const;
-             int getSecond() const;
              
              //print functions - (normally always declared const since they do not modify private members, merely inspect
              void printUniversal() const;
