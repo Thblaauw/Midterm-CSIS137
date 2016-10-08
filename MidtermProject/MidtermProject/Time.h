@@ -6,12 +6,12 @@ class Time
 {
 
 	friend ostream& operator<<(ostream&, const Time&);
-	friend istream& operator<<(istream&, Time&);
+	friend istream& operator>>(istream&, Time&);
             
       private:
               int hour;  //0-23 (24 hour clock format)
               int minute; //0-59
-	      Time convertToUniversal(Time);
+	      void convertToUniversal(Time);
       
       public:
              //default constructor
