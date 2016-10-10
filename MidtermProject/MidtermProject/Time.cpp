@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <string>
 using namespace std;
 
 #include "Time.h"
@@ -82,10 +83,23 @@ ostream& operator<<(ostream& out, const Time& t) {
 	return out;
 }
 
-istream& operator >> (istream& in, Time& t) {
-	int min = 0, hour = 0;
-	in >> hour;
-	in >> min;
+istream& operator>> (istream& in, Time& t) {
+	string input;
+	cin.ignore(80, '\n');
+	getline(cin, input);
+
+	int hour = 0;
+	int min = 0;
+	for (int i = 1; i < input.size(); i++) {
+		if (input[i] == ':') {
+			hour = stoi(input.substr(0, i), nullptr, 10);
+			min = stoi(input.substr(i+1, i+2), nullptr, 10);
+			if (input.substr(i + 4, i + 5) == "PM" || input.substr(i + 4, i + 5) == "pm") {
+				hour += 12;
+			}
+			break;
+		}
+	}
 
 	t.setTime(hour, min);
 
@@ -93,15 +107,15 @@ istream& operator >> (istream& in, Time& t) {
 }
 
 //operators
-Time& Time::operator-(const Time& t2) const{
+double Time::operator-(const Time& t2) const{
 	//This is creating a new time and passing it.
 	//I don't know if we are suposed to do that or just to change 
 	// the Time that called this operator
 
-	//TODO: check if this is the correct implementation
-
 	int min = this->getMinute() - t2.getMinute();
 	int hour = this->getHour() - t2.getHour();
 
-	return *(new Time(hour, min));
+	int timeDifference = hour + (min / 60);//this will return whole hours and some decimal, which will represent the minutes
+	
+	return timeDifference;
 }
