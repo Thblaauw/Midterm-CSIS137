@@ -11,7 +11,7 @@ class Time
       private:
               int hour;  //0-23 (24 hour clock format)
               int minute; //0-59
-	      void convertToUniversal(Time);
+			  void convertToUniversal(Time&);
       
       public:
              //default constructor
@@ -32,7 +32,7 @@ class Time
              void printStandard()const;
 
 	     //operator overloads
-	     const Time& operator-(const Time&);
+	    Time& operator-(const Time&)const;
 };
 
 #endif
