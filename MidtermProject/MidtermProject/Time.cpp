@@ -11,19 +11,18 @@ using namespace std;
 //once you have your own constructor the default is no longer available
 //Constructors can and should be overloaded
 //Constructors cannot be const since they always manipulate private data
-Time::Time(int hour, int minute, int second)
+Time::Time(int hour, int minute)
 {
- setTime(hour, minute, second);
+ setTime(hour, minute);
 }
 
 /*SET FUNCTIONS: Never const since they need to modify private member data*/
 
 //setTime function now is set up to enable cascading
-Time& Time::setTime(int hour, int minute, int second)
+Time& Time::setTime(int hour, int minute)
 {
  setHour(hour);
  setMinute(minute);
- setSecond(second);
  return *this; 
 }
 
@@ -41,13 +40,6 @@ Time& Time::setMinute(int m)
   return *this;
 } 
 
-//setSecond function is now set up to enable cascading
-Time& Time::setSecond(int s)
-{
-  second = (s >= 0 && s < 24) ? s : 0;  //validates second, if valid set to s, else set to 0
-  return *this;
-} 
-
 /*GET FUNCTIONS:  Do not modify private member data normally always const*/
 
 //get Hour
@@ -62,23 +54,54 @@ int Time::getMinute() const  //must be const since prototype is const
     return minute;
 }
 
-//get Second
-int Time::getSecond() const  //must be const since prototype is const
-{
-    return second;
-}
-
 /*PRINT FUNCTIONS:  Normally do not modify private member data so should be const*/
 
 void Time::printUniversal()const  //must be const since prototype is const
 {
      cout << setfill('0') << setw(2) << hour << ":" 
-          << setw(2) << minute << ":" << setw(2) << second << endl;
+          << setw(2) << minute << endl;
 }
 
 void Time::printStandard()const  //must be const since prototype is const
 {
      cout << ((hour == 0 || hour == 12) ? 12 : hour % 12) << ":" 
           << setfill ('0') << setw(2) << minute << ":" 
-          << setw(2) << second << (hour < 12 ? "AM" : "PM" )<< endl;
+		  << (hour < 12 ? "AM" : "PM" )<< endl;
+}
+
+//FRIEND functions :
+
+ostream& operator<<(ostream& out, const Time& t) {
+	// cout function
+	//this will print the standart hour
+
+	out << ((t.getHour() == 0 || t.getHour() == 12) ? 12 : t.getHour() % 12) << ":"
+		<< setfill('0') << setw(2) << t.getMinute() << ":"
+		<< (t.getMinute() < 12 ? "AM" : "PM") << endl;
+
+	return out;
+}
+
+istream& operator >> (istream& in, Time& t) {
+	int min = 0, hour = 0;
+	in >> hour;
+	in >> min;
+
+	t.setTime(hour, min);
+
+	return in;
+}
+
+//operators
+Time& Time::operator-(const Time& t2) const{
+	//This is creating a new time and passing it.
+	//I don't know if we are suposed to do that or just to change 
+	// the Time that called this operator
+
+	//TODO: check if this is the correct implementation
+
+	int min = this->getMinute() - t2.getMinute();
+	int hour = this->getHour() - t2.getHour();
+
+	return *(new Time(hour, min));
 }
