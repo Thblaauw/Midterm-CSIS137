@@ -27,7 +27,8 @@ private:
 	Time *endTime;
 
 public:
-	Course(std::string = "Course Number Undefined",	//courseNumber
+	
+	Course( std::string = "Course Number Undefined",//courseNumber
 			std::string = "Course Name Undefined", //courseName
 			std::string = "Meeting Days Udefined", //meetingDays
 			int = 0, //unitCount

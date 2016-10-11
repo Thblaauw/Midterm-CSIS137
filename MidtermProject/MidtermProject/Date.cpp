@@ -7,7 +7,7 @@ using namespace std;
 Date::Date(int mn, int dy, int yr)
 {
  setDate(mn, dy, yr);
- cout << "Date Constructor called for date: ";
+ //cout << "Date Constructor called for date: ";
  print();
  cout << endl;
 }
@@ -15,10 +15,7 @@ Date::Date(int mn, int dy, int yr)
 //DESTRUCTOR
 Date::~Date()
 {
- cout << "Date Destructor for date: ";
- print();
- cout << endl;
- system("PAUSE");
+ 
 }
 
 void Date::setDate(int mn, int dy, int yr)

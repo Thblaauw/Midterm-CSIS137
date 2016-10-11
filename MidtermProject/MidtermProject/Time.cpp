@@ -37,7 +37,7 @@ Time& Time::setHour(int h)
 //setMinute function is now set up to enable cascading
 Time& Time::setMinute(int m)
 {
-  minute = (m >= 0 && m < 24) ? m : 0;  //validates minute, if valid set to m, else set to 0
+  minute = (m >= 0 && m < 60) ? m : 0;  //validates minute, if valid set to m, else set to 0
   return *this;
 } 
 
@@ -77,8 +77,8 @@ ostream& operator<<(ostream& out, const Time& t) {
 	//this will print the standart hour
 
 	out << ((t.getHour() == 0 || t.getHour() == 12) ? 12 : t.getHour() % 12) << ":"
-		<< setfill('0') << setw(2) << t.getMinute() << ":"
-		<< (t.getMinute() < 12 ? "AM" : "PM") << endl;
+		<< setfill('0') << setw(2) << t.getMinute() << " "
+		<< (t.getHour() < 12 ? "AM" : "PM");
 
 	return out;
 }
@@ -112,10 +112,12 @@ double Time::operator-(const Time& t2) const{
 	//I don't know if we are suposed to do that or just to change 
 	// the Time that called this operator
 
-	int min = this->getMinute() - t2.getMinute();
-	int hour = this->getHour() - t2.getHour();
+	/*int min = this->getMinute() - t2.getMinute();
+	int hour = this->getHour() - t2.getHour();*/
 
-	int timeDifference = hour + (min / 60);//this will return whole hours and some decimal, which will represent the minutes
-	
-	return timeDifference;
+	double timeDifference = (this->getHour()*60 + this->getMinute()) - (t2.getHour() * 60 + t2.getMinute());
+	//this will give the difference in minutes
+
+	return (timeDifference/60);
+	//this will transform the minutes in hours with decimal
 }

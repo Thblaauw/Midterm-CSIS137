@@ -2,7 +2,33 @@
 #define COURSE_CPP
 
 #include "Course.h"
+#include <iomanip>
+/** @author Thomas Blaauw Barbosa
 
+	@param number
+	String with the course Number
+
+	@param name
+	String with the course Name
+
+	@param days
+	String with the meeting days
+
+	@param unit
+	Integer that represents the unit count
+
+	@param startD
+	Date datatype with the Starting Date
+
+	@param endD
+	Date datatype with the Ending Date
+
+	@param startT
+	Time datatype with the Stating Time
+
+	@param endT
+	Time datatype with the Ending Time
+*/
 Course::Course(std::string number,	//courseNumber
 	std::string name , //courseName
 	std::string days, //meetingDays
@@ -36,19 +62,40 @@ Course::~Course() {
 }
 
 double Course::calcDailyDuration() {
-	return *endTime - *startTime;
+	/*std::string tempMeetingDays = *(new std::string(*meetingDays));
+	int dayCount = 0;
+	for (int i = 0; i < tempMeetingDays.size(); i++){
+		if (tempMeetingDays[i] == 'M' || tempMeetingDays[i] == 'T' || tempMeetingDays[i] == 'W' || tempMeetingDays[i] == 'F' || tempMeetingDays[i] == 'S') {
+			dayCount++;
+		}
+	}*/
+	return ((*endTime - *startTime));
 }
+std::ostream& operator<<(std::ostream& out, Course& c) {
+	out  << "Course Info:" << "\t" << c.getCourseNumber() << " -- " << c.getCourseName() << std::endl
+		 << "# of units:" << "\t" << (double)c.getUnitCount() << std::endl
+		//<< "Course Dates:" << "\t" << c.getStartDate() << " - " << c.getEndDate() << std::endl
+		<< "Meeting Days:" << "\t" << c.getMeetingDays() << std::endl
+		<< "Meeting Time:" << "\t" << c.getStartTime()<< "-"  << c.getEndTime() << std::endl
+		<< "Daily Duration:" << "\t" << std::setprecision(3) << c.calcDailyDuration() << std::endl;
 
+	return out;
+}
 //----------------------------------------------------------------------------------------------------
 //------------------------------------------------GETTERS AND SETTERS---------------------------------
 //----------------------------------------------------------------------------------------------------
 
 //------------------------------------------------COURSE NUMBER-----------------------------------
 std::string& Course::getCourseNumber() const{
-	return *courseName;
+	return *courseNumber;
 }
 Course& Course::setCourseNumber(std::string& num) {
-	*courseNumber = num;
+	if (courseNumber != nullptr) {
+		std::string* deletedString = courseNumber;
+		delete deletedString;
+		courseNumber = nullptr;
+	}
+	courseNumber = new std::string(num);
 	return *this;
 }
 //------------------------------------------------COURSE NAME-------------------------------------
@@ -56,7 +103,12 @@ std::string& Course::getCourseName()const {
 	return *courseName;
 }
 Course& Course::setCourseName(std::string& name) {
-	*courseName = name;
+	if (courseName != nullptr) {
+		std::string* deletedString = courseName;
+		delete deletedString;
+		courseName = nullptr;
+	}
+	courseName = new std::string(name);
 	return *this;
 }
 //-----------------------------------------------MEETING DAYS--------------------------------------
@@ -64,7 +116,12 @@ std::string& Course::getMeetingDays()const {
 	return *meetingDays;
 }
 Course& Course::setMeetingDays(std::string& days) {
-	*meetingDays = days;
+	if (meetingDays != nullptr) {
+		std::string* deletedString = meetingDays;
+		delete deletedString;
+		meetingDays = nullptr;
+	}
+	meetingDays = new std::string(days);
 	return *this;
 }
 //-----------------------------------------------UNIT COUNT----------------------------------------
@@ -96,7 +153,7 @@ Time& Course::getStartTime()const {
 	return *startTime;
 }
 Course& Course::setStartTime(Time& t) {
-	this->startTime->setTime(t.getHour(), t.getMinute());
+	startTime = new Time(t.getHour(), t.getMinute());
 	return *this;
 }
 //-------------------------------------------------END TIME---------------------------------------------
@@ -104,7 +161,7 @@ Time& Course::getEndTime()const {
 	return *endTime;
 }
 Course& Course::setEndTime(Time& t) {
-	this->endTime->setTime(t.getHour(), t.getMinute());
+	endTime = new Time(t.getHour(), t.getMinute());
 	return *this;
 }
 
