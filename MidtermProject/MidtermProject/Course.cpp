@@ -86,7 +86,7 @@ std::ostream& operator<<(std::ostream& out, Course& c) {
 //----------------------------------------------------------------------------------------------------
 
 //------------------------------------------------COURSE NUMBER-----------------------------------
-std::string& Course::getCourseNumber() const{
+std::string Course::getCourseNumber() const{
 	return *courseNumber;
 }
 Course& Course::setCourseNumber(std::string& num) {
@@ -99,7 +99,7 @@ Course& Course::setCourseNumber(std::string& num) {
 	return *this;
 }
 //------------------------------------------------COURSE NAME-------------------------------------
-std::string& Course::getCourseName()const {
+std::string Course::getCourseName()const {
 	return *courseName;
 }
 Course& Course::setCourseName(std::string& name) {
@@ -112,7 +112,7 @@ Course& Course::setCourseName(std::string& name) {
 	return *this;
 }
 //-----------------------------------------------MEETING DAYS--------------------------------------
-std::string& Course::getMeetingDays()const {
+std::string Course::getMeetingDays()const {
 	return *meetingDays;
 }
 Course& Course::setMeetingDays(std::string& days) {
@@ -133,7 +133,7 @@ Course& Course::setUnitCount(int unit) {
 	return *this;
 }
 //------------------------------------------------START DATE---------------------------------------
-Date& Course::getStartDate()const {
+Date Course::getStartDate()const {
 	return *startDate;
 }
 Course& Course::setStartDate(Date& d) {
@@ -141,7 +141,7 @@ Course& Course::setStartDate(Date& d) {
 	return *this;
 }
 //------------------------------------------------END DATE------------------------------------------
-Date& Course::getEndDate()const {
+Date Course::getEndDate()const {
 	return *endDate;
 }
 Course& Course::setEndDate(Date& d) {
@@ -149,7 +149,7 @@ Course& Course::setEndDate(Date& d) {
 	return *this;
 }
 //------------------------------------------------START TIME----------------------------------------
-Time& Course::getStartTime()const {
+Time Course::getStartTime()const {
 	return *startTime;
 }
 Course& Course::setStartTime(Time& t) {
@@ -157,7 +157,7 @@ Course& Course::setStartTime(Time& t) {
 	return *this;
 }
 //-------------------------------------------------END TIME---------------------------------------------
-Time& Course::getEndTime()const {
+Time Course::getEndTime()const {
 	return *endTime;
 }
 Course& Course::setEndTime(Time& t) {

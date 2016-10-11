@@ -41,28 +41,28 @@ public:
 
 	double calcDailyDuration();
 
-	std::string& getCourseNumber()const;
+	std::string getCourseNumber()const;
 	Course& setCourseNumber(std::string&);
 
-	std::string& getCourseName()const;
+	std::string getCourseName()const;
 	Course& setCourseName(std::string&);
 
-	std::string& getMeetingDays()const;
+	std::string getMeetingDays()const;
 	Course& setMeetingDays(std::string&);
 
 	int getUnitCount()const;
 	Course& setUnitCount(int);
 
-	Date& getStartDate()const;
+	Date getStartDate()const;
 	Course& setStartDate(Date&);
 
-	Date& getEndDate()const;
+	Date getEndDate()const;
 	Course& setEndDate(Date&);
 
-	Time& getStartTime()const;
+	Time getStartTime()const;
 	Course& setStartTime(Time&);
 
-	Time& getEndTime()const;
+	Time getEndTime()const;
 	Course& setEndTime(Time&);
 
 };
