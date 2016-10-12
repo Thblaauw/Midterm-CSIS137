@@ -1,3 +1,4 @@
-﻿  Course.cpp
+﻿cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
+  Source.cpp
   MidtermProject.vcxproj -> C:\Users\ThomasUser\Documents\Visual Studio 2015\Projects\Midterm-CSIS137\MidtermProject\x64\Debug\MidtermProject.exe
   MidtermProject.vcxproj -> C:\Users\ThomasUser\Documents\Visual Studio 2015\Projects\Midterm-CSIS137\MidtermProject\x64\Debug\MidtermProject.pdb (Partial PDB)
