@@ -16,7 +16,7 @@ private:
 	Date *endDate;
 
 public:
-	Semester(std::string& = "Semester not defined", //name
+	Semester(std::string = "Semester not defined", //name
 		Date& = Date(), //startDate
 		Date& = Date()); //endDate
 

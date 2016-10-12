@@ -72,9 +72,9 @@ double Course::calcDailyDuration() {
 	return ((*endTime - *startTime));
 }
 std::ostream& operator<<(std::ostream& out, Course& c) {
-	out  << "Course Info:" << "\t" << c.getCourseNumber() << " -- " << c.getCourseName() << std::endl
-		 << "# of units:" << "\t" << (double)c.getUnitCount() << std::endl
-		//<< "Course Dates:" << "\t" << c.getStartDate() << " - " << c.getEndDate() << std::endl
+	out << "Course Info:" << "\t" << c.getCourseNumber() << " -- " << c.getCourseName() << std::endl
+		<< "# of units:" << "\t" << (double)c.getUnitCount() << std::endl
+		<< "Course Dates:" << "\t" << c.getStartDate() << " - " << c.getEndDate() << std::endl
 		<< "Meeting Days:" << "\t" << c.getMeetingDays() << std::endl
 		<< "Meeting Time:" << "\t" << c.getStartTime()<< "-"  << c.getEndTime() << std::endl
 		<< "Daily Duration:" << "\t" << std::setprecision(3) << c.calcDailyDuration() << std::endl;
@@ -137,7 +137,12 @@ Date Course::getStartDate()const {
 	return *startDate;
 }
 Course& Course::setStartDate(Date& d) {
-	//this->startDate->setDate(d.getMonth(), d.getDay(), d.getYear());
+	if (this->startDate != nullptr) {
+		Date *deletedDate = this->startDate;
+		delete deletedDate;
+		this->startDate = nullptr;
+	}
+	this->startDate = new Date(d.getMonth(), d.getDay(), d.getYear());
 	return *this;
 }
 //------------------------------------------------END DATE------------------------------------------
@@ -145,7 +150,12 @@ Date Course::getEndDate()const {
 	return *endDate;
 }
 Course& Course::setEndDate(Date& d) {
-	//this->endDate->setDate(d.getMonth(), d.getDay(), d.getYear());
+	if (this->endDate != nullptr) {
+		Date *deletedDate = this->endDate;
+		delete deletedDate;
+		this->endDate = nullptr;
+	}
+	this->endDate = new Date(d.getMonth(), d.getDay(), d.getYear());
 	return *this;
 }
 //------------------------------------------------START TIME----------------------------------------
