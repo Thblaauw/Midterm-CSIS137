@@ -37,8 +37,8 @@ istream& operator>>(istream& input, Date& date) {
 	case 2:
 		input >> setw(2) >> date.month;
 		break;
-	default:
-		cout << "ERROR in switch 1" << endl;
+	//default:
+		//cout << "ERROR in switch 1" << endl;
 		//Armen: Anything for default?
 	}
 
@@ -68,8 +68,8 @@ istream& operator>>(istream& input, Date& date) {
 	case 2:
 		input >> setw(2) >> date.day;
 		break;
-	default:
-		cout << "ERROR in switch 2" << endl;
+	//default:
+		//cout << "ERROR in switch 2" << endl;
 		//Armen: Anything for default?
 	}
 
@@ -96,7 +96,7 @@ void Date::setDate(int month, int day, int year) //Armen: Should we make this ca
 	 else
 	 {
 		 this->setMonth(1);
-		 cout << "Month set to one - INVALID" << endl;  //BAD DESIGN!
+		 //cout << "Month set to one - INVALID" << endl;  //BAD DESIGN!
 		 //Armen: should we fix this if this is bad design?
 	 }
  
@@ -104,7 +104,7 @@ void Date::setDate(int month, int day, int year) //Armen: Should we make this ca
 	 //Armen: do we have to?
 	 this->setDay(day);  //to validate the day
  
-	 cout << endl;
+	// cout << endl;
 }
 
 
