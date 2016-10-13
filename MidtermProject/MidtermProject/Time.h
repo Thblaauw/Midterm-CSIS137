@@ -4,14 +4,13 @@
 
 class Time
 {
-
+	//iostream operator overloads:
 	friend ostream& operator<<(ostream&, const Time&);
 	friend istream& operator>>(istream&, Time&);
             
       private:
               int hour;  //0-23 (24 hour clock format)
               int minute; //0-59
-	      void convertToUniversal(Time);
       
       public:
              //default constructor
@@ -31,8 +30,9 @@ class Time
              void printUniversal() const;
              void printStandard()const;
 
-	     //operator overloads
-	     const Time& operator-(const Time&);
+	     //Overload -operator:
+	     double operator-(const Time&);
+
 };
 
 #endif
