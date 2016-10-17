@@ -4,6 +4,9 @@
 #include <iostream>
 class Time
 {
+	friend std::ostream& operator<<(std::ostream&, const Time&);
+	friend std::istream& operator >> (std::istream&, Time&);
+
       private:
               int hour;  //0-23 (24 hour clock format)
               int minute; //0-59
@@ -30,8 +33,7 @@ class Time
 	     //operator overloads
 	    double operator-(const Time&)const;
 
-		friend std::ostream& operator<<(std::ostream&, const Time&);
-		friend std::istream& operator>>(std::istream&, Time&);
+		
 };
 
 #endif

@@ -90,6 +90,7 @@ istream& operator>> (istream& in, Time& t) {
 
 	int hour = 0;
 	int min = 0;
+
 	for (int i = 1; i < input.size(); i++) {
 		if (input[i] == ':') {
 			hour = stoi(input.substr(0, i), nullptr, 10);
@@ -100,7 +101,7 @@ istream& operator>> (istream& in, Time& t) {
 			break;
 		}
 	}
-
+	//6:30 PM or 06:30 PM
 	t.setTime(hour, min);
 
 	return in;

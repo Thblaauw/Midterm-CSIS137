@@ -27,7 +27,32 @@ private:
 	Time *endTime;
 
 public:
-	
+	/** @author Thomas Blaauw Barbosa
+
+	@param number
+	String with the course Number
+
+	@param name
+	String with the course Name
+
+	@param days
+	String with the meeting days
+
+	@param unit
+	Integer that represents the unit count
+
+	@param startD
+	Date datatype with the Starting Date
+
+	@param endD
+	Date datatype with the Ending Date
+
+	@param startT
+	Time datatype with the Stating Time
+
+	@param endT
+	Time datatype with the Ending Time
+	*/
 	Course( std::string = "Course Number Undefined",//courseNumber
 			std::string = "Course Name Undefined", //courseName
 			std::string = "Meeting Days Udefined", //meetingDays

@@ -69,7 +69,7 @@ ostream& operator<<(ostream& out, Semester& sem) {
 
 	return out;
 }
-istream& operator >> (istream& in, Semester& sem) {
+istream& operator>> (istream& in, Semester& sem) {
 	//cin.ignore(80, '\n');
 	std::cout << "Enter the Semester Name:";
 	std::string input;
