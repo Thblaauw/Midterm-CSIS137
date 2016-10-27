@@ -5,6 +5,8 @@ using namespace std;
 
 #include "Time.h"
 
+
+
 //Constructor function to initialize private data
 //remember a constructor is called whenever a new object of
 //a class data type is instantiated, if a constructor is not defined the C++ do 
@@ -67,58 +69,76 @@ void Time::printStandard()const  //must be const since prototype is const
 {
      cout << ((hour == 0 || hour == 12) ? 12 : hour % 12) << ":" 
           << setfill ('0') << setw(2) << minute << ":" 
-		  << (hour < 12 ? "AM" : "PM" )<< endl;
+          << setw(2) << (hour < 12 ? "AM" : "PM" )<< endl;
 }
 
-//FRIEND functions :
+double Time::operator-(const Time& time)
+{
+	//convert t1 and t2 to minutes:
+	int t1 = (this->getHour() * 60) + this->getMinute();
+	int t2 = (time.getHour() * 60) + time.getMinute();
 
-ostream& operator<<(ostream& out, const Time& t) {
-	// cout function
-	//this will print the standart hour
+	//if t1 is greater than noon & larger than t2 (i.e. 4pm minus 2am)...
+	if ((t1 > 720) && (t1 > t2)) {
+		t1 = 1440 - t1;
+		double diff = double(t1 + t2) / 60;
+		return diff;
+	}
 
-	out << ((t.getHour() == 0 || t.getHour() == 12) ? 12 : t.getHour() % 12) << ":"
-		<< setfill('0') << setw(2) << t.getMinute() << " "
-		<< (t.getHour() < 12 ? "AM" : "PM");
 
-	return out;
+	else {
+		double diff = double(t1 - t2) / 60;
+		//if the result is negative (i.e. 12am - 12pm) -> (0 - 12) = -12
+		if (diff < 0) {
+			diff *= -1;
+		}
+
+		return diff;
+	}
 }
 
-istream& operator>> (istream& in, Time& t) {
+ostream& operator<<(ostream& output, const Time& time)
+{
+	output << ((time.hour == 0 || time.hour == 12) ? 12 : time.hour % 12) << ":"
+		<< setfill('0') << setw(2) << time.minute << ":"
+		<< setw(2) << (time.hour < 12 ? "AM" : "PM") << endl;
+	return output;
+}
+
+istream& operator >> (istream& in, Time& t) {
 	string input;
-	cin.ignore(80, '\n');
-	getline(cin, input);
+	getline(in, input);
+	int index = 4; //hold index of AM/PM (will be 4 units away from colon index)
 
-	int hour = 0;
-	int min = 0;
-
+	//loop through the string...
 	for (int i = 1; i < input.size(); i++) {
+		//to find the colon...
 		if (input[i] == ':') {
-			hour = stoi(input.substr(0, i), nullptr, 10);
-			min = stoi(input.substr(i+1, i+2), nullptr, 10);
-			if (input.substr(i + 4, i + 5) == "PM" || input.substr(i + 4, i + 5) == "pm") {
-				hour += 12;
-			}
-			break;
+			index += i; //store index for AM/PM
+			//the hour is the substring before the colon...
+			t.hour = stoi(input.substr(0, i), nullptr, 10);
+			//the minute is the substring after the colon...
+			t.minute = stoi(input.substr(i + 1, i + 2), nullptr, 10);
 		}
 	}
-	//6:30 PM or 06:30 PM
-	t.setTime(hour, min);
+
+	//adjust for universal hours if user entered PM/pm
+	if ((input[index] == 'P') || (input[index] == 'p')) {
+		t.hour += 12;
+	}
+	//checks if user entered 12:xx AM, and adjusts to universal
+	else if (t.hour == 12) {
+		t.hour = 0;
+	}
+	//if user entered hour out of range, default to noon
+	if ((t.hour < 0) || (t.hour > 23)) {
+		t.hour = 12;
+	}
+	
+	//if user entered minute out of range, default to zero
+	if ((t.minute < 0) || (t.minute > 59)) {
+		t.minute = 0;
+	}
 
 	return in;
-}
-
-//operators
-double Time::operator-(const Time& t2) const{
-	//This is creating a new time and passing it.
-	//I don't know if we are suposed to do that or just to change 
-	// the Time that called this operator
-
-	/*int min = this->getMinute() - t2.getMinute();
-	int hour = this->getHour() - t2.getHour();*/
-
-	double timeDifference = (this->getHour()*60 + this->getMinute()) - (t2.getHour() * 60 + t2.getMinute());
-	//this will give the difference in minutes
-
-	return (timeDifference/60);
-	//this will transform the minutes in hours with decimal
 }
