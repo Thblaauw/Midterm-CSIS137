@@ -14,9 +14,9 @@ class Course {
 
 private:
 
-	std::string *courseNumber;
-	std::string *courseName;
-	std::string *meetingDays;
+	std::string courseNumber;
+	std::string courseName;
+	std::string meetingDays;
 
 	int unitCount;
 	
@@ -53,14 +53,14 @@ public:
 	@param endT
 	Time datatype with the Ending Time
 	*/
-	Course( std::string = "Course Number Undefined",//courseNumber
-			std::string = "Course Name Undefined", //courseName
-			std::string = "Meeting Days Udefined", //meetingDays
-			int = 0, //unitCount
-			Date = Date(), //startDate
-			Date = Date(), //endDate
-			Time = Time(), //startTime
-			Time = Time() ); //endTIme
+	Course(std::string number = "Course Number Undefined",//courseNumber
+		std::string name = "Course Name Undefined", //courseName
+		std::string days = "Meeting Days Udefined", //meetingDays
+		int unit = 0, //unitCount
+		Date startD = Date(), //startDate
+		Date endD = Date(), //endDate
+		Time startT = Time(), //startTime
+		Time endT = Time());
 
 	~Course();
 

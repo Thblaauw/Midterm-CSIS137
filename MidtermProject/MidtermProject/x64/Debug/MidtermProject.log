@@ -1,3 +1,9 @@
-﻿  CourseSchedule.cpp
+﻿  Time.cpp
+  Source.cpp
+  Semester.cpp
+  Date.cpp
+  CourseSchedule.cpp
+  Course.cpp
+  Generating Code...
   MidtermProject.vcxproj -> C:\Users\ThomasUser\Documents\Visual Studio 2015\Projects\Midterm-CSIS137\MidtermProject\x64\Debug\MidtermProject.exe
   MidtermProject.vcxproj -> C:\Users\ThomasUser\Documents\Visual Studio 2015\Projects\Midterm-CSIS137\MidtermProject\x64\Debug\MidtermProject.pdb (Partial PDB)

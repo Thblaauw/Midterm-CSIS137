@@ -31,7 +31,7 @@ class Time
              void printStandard()const;
 
 	     //operator overloads
-	    double operator-(const Time&)const;
+	    double operator-(const Time&);
 
 		
 };

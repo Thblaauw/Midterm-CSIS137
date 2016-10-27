@@ -1,6 +1,7 @@
 #ifndef COURSESCHEDULE_CPP
 #define COURSESCHEDULE_CPP
 #include "CourseSchedule.h"
+#include "Course.h"
 CourseSchedule::CourseSchedule(std::string name,
 	Semester& semester,
 	int maxCourses) 
@@ -8,8 +9,8 @@ CourseSchedule::CourseSchedule(std::string name,
 	this->setStudentName(name);
 	sem = new Semester(semester);
 	this->maxCourses = maxCourses;
-	this->courses = 0;
-	courses = new Course[this->maxCourses];
+	this->numCourses = 0;
+	const int MAXCOURSES = maxCourses;
 }
 CourseSchedule::~CourseSchedule() {
 	delete sem;
@@ -41,10 +42,33 @@ int CourseSchedule::getNumCourses() {
 	return numCourses;
 }
 
-bool CourseSchedule::addCourse(Course&) {
-	return true;
+bool CourseSchedule::addCourse(Course& c) {
+	if (this->numCourses < this->maxCourses) {
+		this->courses[numCourses] = c;
+		numCourses++;
+		return true;
+	}
+	return false;
 }
-bool CourseSchedule::removeCourse(int) {
-	return true;
+bool CourseSchedule::removeCourse(int index) {
+	if (index <= this->numCourses) {
+
+		if (index == this->maxCourses - 1) {
+			this->courses[index] = *new Course();
+			this->numCourses--;
+		}
+		for (int i = 0; i < this->maxCourses - 1; i++) {
+			if (i >= index) {
+				this->courses[i] = this->courses[i + 1];
+			}
+		}
+		this->numCourses--;
+		return true;
+	}
+	return false;
+}
+
+void CourseSchedule::print() {
+
 }
 #endif // !COURSESCHEDULE_CPP

@@ -4,14 +4,14 @@
 #include "Course.h"
 #include <iomanip>
 
-Course::Course(std::string number,	//courseNumber
+Course::Course(std::string number ,//courseNumber
 	std::string name , //courseName
 	std::string days, //meetingDays
 	int unit, //unitCount
 	Date startD, //startDate
 	Date endD, //endDate
 	Time startT, //startTime
-	Time endT)//endTIme
+	Time endT) //endTIme
 {
 	this->setCourseNumber(number);
 	this->setCourseName(name);
@@ -27,9 +27,9 @@ Course::~Course() {
 
 	std::cout << "A course has been deleted!" << std::endl;
 
-	delete courseNumber;
+	/*delete courseNumber;
 	delete courseName;
-	delete meetingDays;
+	delete meetingDays;*/
 	delete startDate;
 	delete endDate;
 	delete startTime;
@@ -37,13 +37,13 @@ Course::~Course() {
 }
 
 double Course::calcDailyDuration() {
-	/*std::string tempMeetingDays = *(new std::string(*meetingDays));
+	std::string tempMeetingDays = this->meetingDays;
 	int dayCount = 0;
 	for (int i = 0; i < tempMeetingDays.size(); i++){
 		if (tempMeetingDays[i] == 'M' || tempMeetingDays[i] == 'T' || tempMeetingDays[i] == 'W' || tempMeetingDays[i] == 'F' || tempMeetingDays[i] == 'S') {
 			dayCount++;
 		}
-	}*/
+	}
 	return ((*endTime - *startTime));
 }
 std::ostream& operator<<(std::ostream& out, Course& c) {
@@ -62,41 +62,26 @@ std::ostream& operator<<(std::ostream& out, Course& c) {
 
 //------------------------------------------------COURSE NUMBER-----------------------------------
 std::string Course::getCourseNumber() const{
-	return *courseNumber;
+	return courseNumber;
 }
 Course& Course::setCourseNumber(std::string& num) {
-	if (courseNumber != nullptr) {
-		std::string* deletedString = courseNumber;
-		delete deletedString;
-		courseNumber = nullptr;
-	}
-	courseNumber = new std::string(num);
+	courseNumber = num;
 	return *this;
 }
 //------------------------------------------------COURSE NAME-------------------------------------
 std::string Course::getCourseName()const {
-	return *courseName;
+	return courseName;
 }
 Course& Course::setCourseName(std::string& name) {
-	if (courseName != nullptr) {
-		std::string* deletedString = courseName;
-		delete deletedString;
-		courseName = nullptr;
-	}
-	courseName = new std::string(name);
+	this->courseName = name;
 	return *this;
 }
 //-----------------------------------------------MEETING DAYS--------------------------------------
 std::string Course::getMeetingDays()const {
-	return *meetingDays;
+	return meetingDays;
 }
 Course& Course::setMeetingDays(std::string& days) {
-	if (meetingDays != nullptr) {
-		std::string* deletedString = meetingDays;
-		delete deletedString;
-		meetingDays = nullptr;
-	}
-	meetingDays = new std::string(days);
+	this->meetingDays = days;
 	return *this;
 }
 //-----------------------------------------------UNIT COUNT----------------------------------------
@@ -112,11 +97,6 @@ Date Course::getStartDate()const {
 	return *startDate;
 }
 Course& Course::setStartDate(Date& d) {
-	if (this->startDate != nullptr) {
-		Date *deletedDate = this->startDate;
-		delete deletedDate;
-		this->startDate = nullptr;
-	}
 	this->startDate = new Date(d.getMonth(), d.getDay(), d.getYear());
 	return *this;
 }
@@ -125,11 +105,6 @@ Date Course::getEndDate()const {
 	return *endDate;
 }
 Course& Course::setEndDate(Date& d) {
-	if (this->endDate != nullptr) {
-		Date *deletedDate = this->endDate;
-		delete deletedDate;
-		this->endDate = nullptr;
-	}
 	this->endDate = new Date(d.getMonth(), d.getDay(), d.getYear());
 	return *this;
 }

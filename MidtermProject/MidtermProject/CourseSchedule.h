@@ -35,6 +35,6 @@ public:
 
 	bool addCourse(Course&);
 	bool removeCourse(int);
-
+	void print();
 };
 #endif // !COURSESCHEDULE_H
