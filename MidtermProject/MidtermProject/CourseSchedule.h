@@ -7,8 +7,8 @@
 
 class CourseSchedule {
 private:
-	std::string* studentName;
-	Semester* sem;
+	std::string studentName;
+	Semester sem;
 	Course* courses;
 	int maxCourses;
 	int numCourses;
@@ -23,11 +23,7 @@ public:
 	CourseSchedule& setStudentName(std::string);
 	std::string getStudentName();
 
-	//CourseSchedule& setSemester(Semester&);
 	Semester& getSemester();
-
-	//CourseSchedule setCourse(int, Semester&);
-	//Course& getCourse(int);
 
 	int getMaxCourses();
 

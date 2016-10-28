@@ -29,11 +29,13 @@ Course::~Course() {
 
 	/*delete courseNumber;
 	delete courseName;
-	delete meetingDays;*/
+	delete meetingDays;
 	delete startDate;
 	delete endDate;
 	delete startTime;
 	delete endTime;
+
+	*/
 }
 
 double Course::calcDailyDuration() {
@@ -44,14 +46,14 @@ double Course::calcDailyDuration() {
 			dayCount++;
 		}
 	}
-	return ((*endTime - *startTime));
+	return ((endTime - startTime));
 }
 std::ostream& operator<<(std::ostream& out, Course& c) {
 	out << "Course Info:" << "\t" << c.getCourseNumber() << " -- " << c.getCourseName() << std::endl
 		<< "# of units:" << "\t" << (double)c.getUnitCount() << std::endl
 		<< "Course Dates:" << "\t" << c.getStartDate() << " - " << c.getEndDate() << std::endl
 		<< "Meeting Days:" << "\t" << c.getMeetingDays() << std::endl
-		<< "Meeting Time:" << "\t" << c.getStartTime()<< "-"  << c.getEndTime() << std::endl
+		<< "Meeting Time:" << "\t" << c.getStartTime()<< " -- "  << c.getEndTime() << std::endl
 		<< "Daily Duration:" << "\t" << std::setprecision(3) << c.calcDailyDuration() << std::endl;
 
 	return out;
@@ -94,34 +96,34 @@ Course& Course::setUnitCount(int unit) {
 }
 //------------------------------------------------START DATE---------------------------------------
 Date Course::getStartDate()const {
-	return *startDate;
+	return startDate;
 }
 Course& Course::setStartDate(Date& d) {
-	this->startDate = new Date(d.getMonth(), d.getDay(), d.getYear());
+	this->startDate = d;
 	return *this;
 }
 //------------------------------------------------END DATE------------------------------------------
 Date Course::getEndDate()const {
-	return *endDate;
+	return endDate;
 }
 Course& Course::setEndDate(Date& d) {
-	this->endDate = new Date(d.getMonth(), d.getDay(), d.getYear());
+	this->endDate = d;
 	return *this;
 }
 //------------------------------------------------START TIME----------------------------------------
 Time Course::getStartTime()const {
-	return *startTime;
+	return startTime;
 }
 Course& Course::setStartTime(Time& t) {
-	startTime = new Time(t.getHour(), t.getMinute());
+	startTime = t;
 	return *this;
 }
 //-------------------------------------------------END TIME---------------------------------------------
 Time Course::getEndTime()const {
-	return *endTime;
+	return endTime;
 }
 Course& Course::setEndTime(Time& t) {
-	endTime = new Time(t.getHour(), t.getMinute());
+	endTime = t;
 	return *this;
 }
 

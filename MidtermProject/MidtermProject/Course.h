@@ -20,11 +20,11 @@ private:
 
 	int unitCount;
 	
-	Date *startDate;
-	Date *endDate;
+	Date startDate;
+	Date endDate;
 
-	Time *startTime;
-	Time *endTime;
+	Time startTime;
+	Time endTime;
 
 public:
 	/** @author Thomas Blaauw Barbosa

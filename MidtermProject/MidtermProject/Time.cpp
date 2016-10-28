@@ -75,8 +75,11 @@ void Time::printStandard()const  //must be const since prototype is const
 double Time::operator-(const Time& time)
 {
 	//convert t1 and t2 to minutes:
-	int t1 = (this->getHour() * 60) + this->getMinute();
-	int t2 = (time.getHour() * 60) + time.getMinute();
+	double t1 = (this->getHour() * 60) + this->getMinute();
+	double t2 = (time.getHour() * 60) + time.getMinute();
+
+	return (t1 - t2)/ 60;
+	//Jacob, I don't know whats the problem, but I the result I was getting was wrokng. I tried this code and it worked
 
 	//if t1 is greater than noon & larger than t2 (i.e. 4pm minus 2am)...
 	if ((t1 > 720) && (t1 > t2)) {
@@ -100,8 +103,8 @@ double Time::operator-(const Time& time)
 ostream& operator<<(ostream& output, const Time& time)
 {
 	output << ((time.hour == 0 || time.hour == 12) ? 12 : time.hour % 12) << ":"
-		<< setfill('0') << setw(2) << time.minute << ":"
-		<< setw(2) << (time.hour < 12 ? "AM" : "PM") << endl;
+		<< setfill('0') << setw(2) << time.minute << " "
+		<< setw(2) << (time.hour < 12 ? "AM" : "PM");
 	return output;
 }
 

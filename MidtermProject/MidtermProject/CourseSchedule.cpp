@@ -7,32 +7,28 @@ CourseSchedule::CourseSchedule(std::string name,
 	int maxCourses) 
 {
 	this->setStudentName(name);
-	sem = new Semester(semester);
+	sem = semester;
 	this->maxCourses = maxCourses;
 	this->numCourses = 0;
 	const int MAXCOURSES = maxCourses;
+	this->courses = new Course[maxCourses];
 }
 CourseSchedule::~CourseSchedule() {
-	delete sem;
 	delete[] courses;
-	delete studentName;
+	//delete studentName;
 }
 
 CourseSchedule& CourseSchedule::setStudentName(std::string n) {
-	this->studentName = new std::string(n);
+	this->studentName = n;
 	return *this;
 }
 std::string CourseSchedule::getStudentName() {
-	return *studentName;
+	return studentName;
 }
 
-//CourseSchedule& CourseSchedule::setSemester(Semester&);
 Semester& CourseSchedule::getSemester() {
-	return *sem;
+	return sem;
 }
-
-//CourseSchedule CourseSchedule::setCourse(int, Semester&);
-//Course& CourseSchedule::getCourse(int);
 
 int CourseSchedule::getMaxCourses() {
 	return maxCourses;
@@ -70,5 +66,14 @@ bool CourseSchedule::removeCourse(int index) {
 
 void CourseSchedule::print() {
 
+	std::cout << "CLASS SCHEDULE" << std::endl 
+		<< "-----------------------------------------------------------" << std::endl
+		<< "Name: " << this->studentName << std::endl
+		<< "Semester: " << this->sem << std::endl
+		<< "Number of Classes: " << this->numCourses << std::endl
+		<< "-----------------------------------------------------------" << std::endl;
+	for (int i = 0; i < numCourses; i++) {
+		std::cout << this->courses[i] << endl;
+	}
 }
 #endif // !COURSESCHEDULE_CPP

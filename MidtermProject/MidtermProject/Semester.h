@@ -11,9 +11,9 @@ class Semester {
 	friend istream& operator>>(istream&, Semester&);
 
 private:
-	std::string *name;
-	Date *startDate;
-	Date *endDate;
+	std::string name;
+	Date startDate;
+	Date endDate;
 
 public:
 	Semester(std::string = "Semester not defined", //name

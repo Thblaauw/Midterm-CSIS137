@@ -14,51 +14,33 @@ Semester::Semester(std::string n, //name
 }
 
 Semester::~Semester() {
-	delete this->name;
-	delete  this->startDate;
-	delete this->endDate;
+
 }
 
 //-------------------------------------------------------------------------------------
 //------------------------------------GETTERS AND SETTERS------------------------------
 //-------------------------------------------------------------------------------------
 std::string Semester::getName() {
-	return *name;
+	return name;
 }
 Semester& Semester::setName(std::string& n) {
-	if (name != nullptr) {
-		std::string *deletedString = name;
-		delete deletedString;
-		name = nullptr;
-	}
-	this->name = new std::string(n);
-
+	this->name = n;
 	return *this;
 }
 
 Date Semester::getStartDate() {
-	return *(startDate);
+	return (startDate);
 }
 Semester& Semester::setStartDate(Date& d) {
-	if (name != nullptr) {
-		Date *deletedDate = startDate;
-		delete deletedDate;
-		startDate = nullptr;
-	}
-	this->startDate = new Date(d);
+	this->startDate = d;
 	return *this;
 }
 
 Date Semester::getEndDate() {
-	return *(endDate);
+	return (endDate);
 }
 Semester& Semester::setEndDate(Date& d) {
-	if (name != nullptr) {
-		Date *deletedDate = endDate;
-		delete deletedDate;
-		endDate = nullptr;
-	}
-	this->endDate = new Date(d);
+	this->endDate = d;
 	return *this;
 }
 //------------------------------------------------------------------------------------
@@ -79,12 +61,12 @@ istream& operator>> (istream& in, Semester& sem) {
 
 	//cin.ignore(80, '\n');
 	std::cout << "Enter the starting date:";
-	std::cin >> *(sem.startDate);
+	std::cin >> (sem.startDate);
 	std::cout << std::endl;
 
 	cin.ignore(80, '\n');
 	std::cout << "Enter the ending date:";
-	std::cin >> *(sem.endDate);
+	std::cin >> (sem.endDate);
 
 	return in;
 }
