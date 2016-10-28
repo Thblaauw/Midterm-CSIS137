@@ -5,14 +5,10 @@
 #ifndef DATE_H
 #define DATE_H
 
-#include <iostream>
-
-using namespace std;
-
 class Date
 {
-		friend ostream& operator<<(ostream&, const Date&);
-		friend istream& operator>>(istream&, Date&);
+	friend ostream& operator<<(ostream&, const Date&);
+	friend istream& operator>>(istream&, Date&);
 
         private:
                 int month; //1-12
@@ -24,21 +20,20 @@ class Date
         
         public:
                Date(int = 1, int = 1, int = 1990);
+			   void setDate(int, int, int);
+			   Date& setMonth(int);
+			   Date& setDay(int);
+			   Date& setYear(int);
+			   int getMonth() const;
+			   int getDay() const;
+			   int getYear() const;
 			   bool operator>(const Date&) const;
 			   bool operator<(const Date&) const;
 			   bool operator>=(const Date&) const;
 			   bool operator<=(const Date&) const;
 			   bool operator==(const Date&) const;
 			   bool operator!=(const Date&) const;
-			   int getMonth() const;
-			   int getDay() const;
-			   int getYear() const;
-			   Date& setMonth(int);
-			   Date& setDay(int);
-			   Date& setYear(int);
-			   void setDate(int, int, int);
                ~Date();
-               
 };
 
 #endif
