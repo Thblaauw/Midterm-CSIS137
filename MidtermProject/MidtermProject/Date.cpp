@@ -12,16 +12,6 @@ using namespace std;
 Date::Date(int mn, int dy, int yr)
 {
 	setDate(mn, dy, yr);
-	cout << "Date Constructor called for date: ";
-	cout << endl;
-}
-
-//DESTRUCTOR
-Date::~Date()
-{
-	cout << "Date Destructor for date: ";
-	cout << endl;
-	system("PAUSE");
 }
 
 void Date::setDate(int mn, int dy, int yr)
