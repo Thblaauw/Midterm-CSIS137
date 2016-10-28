@@ -33,7 +33,6 @@ class Date
 			   bool operator<=(const Date&) const;
 			   bool operator==(const Date&) const;
 			   bool operator!=(const Date&) const;
-               ~Date();
 };
 
 #endif
