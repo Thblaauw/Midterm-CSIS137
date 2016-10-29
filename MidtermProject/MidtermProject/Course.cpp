@@ -1,3 +1,7 @@
+//Team Sky.Net
+//CSIS 137
+//Midterm Project
+
 #include "Course.h"
 #include <iomanip>
 
