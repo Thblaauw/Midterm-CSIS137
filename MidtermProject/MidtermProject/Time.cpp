@@ -1,10 +1,10 @@
-#include <iostream>
-#include <iomanip>
-#include <string>
-using namespace std;
+//Team Sky.Net
+//CSIS 137
+//Midterm Project
 
 #include "Time.h"
-
+#include <iomanip>
+#include <string>
 
 
 //Constructor function to initialize private data
@@ -68,18 +68,15 @@ void Time::printUniversal()const  //must be const since prototype is const
 void Time::printStandard()const  //must be const since prototype is const
 {
      cout << ((hour == 0 || hour == 12) ? 12 : hour % 12) << ":" 
-          << setfill ('0') << setw(2) << minute << ":" 
+          << setfill ('0') << setw(2) << minute
           << setw(2) << (hour < 12 ? "AM" : "PM" )<< endl;
 }
 
 double Time::operator-(const Time& time)
 {
 	//convert t1 and t2 to minutes:
-	double t1 = (this->getHour() * 60) + this->getMinute();
-	double t2 = (time.getHour() * 60) + time.getMinute();
-
-	return (t1 - t2)/ 60;
-	//Jacob, I don't know whats the problem, but I the result I was getting was wrokng. I tried this code and it worked
+	int t1 = (time.getHour() * 60) + time.getMinute();
+	int t2 = (this->getHour() * 60) + this->getMinute();
 
 	//if t1 is greater than noon & larger than t2 (i.e. 4pm minus 2am)...
 	if ((t1 > 720) && (t1 > t2)) {
@@ -103,8 +100,8 @@ double Time::operator-(const Time& time)
 ostream& operator<<(ostream& output, const Time& time)
 {
 	output << ((time.hour == 0 || time.hour == 12) ? 12 : time.hour % 12) << ":"
-		<< setfill('0') << setw(2) << time.minute << " "
-		<< setw(2) << (time.hour < 12 ? "AM" : "PM");
+		<< setfill('0') << setw(2) << time.minute
+		<< setw(2) << (time.hour < 12 ? "AM" : "PM") ;
 	return output;
 }
 
@@ -119,9 +116,9 @@ istream& operator >> (istream& in, Time& t) {
 		if (input[i] == ':') {
 			index += i; //store index for AM/PM
 			//the hour is the substring before the colon...
-			t.hour = stoi(input.substr(0, i), nullptr, 10);
+			t.hour = stoi(input.substr(0, i));
 			//the minute is the substring after the colon...
-			t.minute = stoi(input.substr(i + 1, i + 2), nullptr, 10);
+			t.minute = stoi(input.substr(i + 1, i + 2));
 		}
 	}
 
