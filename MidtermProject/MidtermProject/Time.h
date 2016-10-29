@@ -1,16 +1,23 @@
-//Time Class Definition with const member functions
 #ifndef TIME_H
+//Team Sky.Net
+//CSIS 137
+//Midterm Project
+
 #define TIME_H
+
+using namespace std;
+
 #include <iostream>
+
 class Time
 {
-	friend std::ostream& operator<<(std::ostream&, const Time&);
-	friend std::istream& operator >> (std::istream&, Time&);
-
+	//iostream operator overloads:
+	friend ostream& operator<<(ostream&, const Time&);
+	friend istream& operator>>(istream&, Time&);
+            
       private:
               int hour;  //0-23 (24 hour clock format)
               int minute; //0-59
-			  void convertToUniversal(Time&);
       
       public:
              //default constructor
@@ -30,10 +37,9 @@ class Time
              void printUniversal() const;
              void printStandard()const;
 
-	     //operator overloads
-	    double operator-(const Time&);
+			 //Overload -operator:
+			 double operator-(const Time&);
 
-		
 };
 
 #endif
