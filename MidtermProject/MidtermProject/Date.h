@@ -5,6 +5,10 @@
 #ifndef DATE_H
 #define DATE_H
 
+using namespace std;
+
+#include <iostream>
+
 class Date
 {
 	friend ostream& operator<<(ostream&, const Date&);
