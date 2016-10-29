@@ -2,9 +2,6 @@
 //CSIS 137
 //Midterm Project
 
-#include <iostream>
-using namespace std;
-
 #include "Date.h"
 #include <string>
 
