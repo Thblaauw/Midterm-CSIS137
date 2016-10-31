@@ -6,6 +6,8 @@
 #include "Course.h"
 
 class CourseSchedule {
+
+	friend std::ostream& operator<<(std::ostream&, CourseSchedule&);
 private:
 	std::string studentName;
 	Semester sem;
@@ -31,6 +33,6 @@ public:
 
 	bool addCourse(Course&);
 	bool removeCourse(int);
-	void print();
+	//void print();
 };
 #endif // !COURSESCHEDULE_H

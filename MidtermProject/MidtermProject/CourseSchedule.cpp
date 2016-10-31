@@ -39,7 +39,7 @@ int CourseSchedule::getNumCourses() {
 }
 
 bool CourseSchedule::addCourse(Course& c) {
-	if (this->numCourses < this->maxCourses) {
+	if (this->numCourses < this->maxCourses && checkDates(this->sem, c.getStartDate(), c.getEndDate() ) ) {
 		this->courses[numCourses] = c;
 		numCourses++;
 		return true;
@@ -47,6 +47,10 @@ bool CourseSchedule::addCourse(Course& c) {
 	return false;
 }
 bool CourseSchedule::removeCourse(int index) {
+	index--;
+	if (index > numCourses - 1)
+		return false;
+
 	if (index <= this->numCourses) {
 
 		if (index == this->maxCourses - 1) {
@@ -64,16 +68,25 @@ bool CourseSchedule::removeCourse(int index) {
 	return false;
 }
 
-void CourseSchedule::print() {
+std::ostream& operator<<(std::ostream& out, CourseSchedule& cs) {
 
-	std::cout << "CLASS SCHEDULE" << std::endl 
+	out << "CLASS SCHEDULE" << std::endl 
 		<< "-----------------------------------------------------------" << std::endl
-		<< "Name: " << this->studentName << std::endl
-		<< "Semester: " << this->sem << std::endl
-		<< "Number of Classes: " << this->numCourses << std::endl
+		<< "Name: " << cs.studentName << std::endl
+		<< "Semester: " << cs.sem << std::endl
+		<< "Number of Classes: " << cs.numCourses << std::endl
 		<< "-----------------------------------------------------------" << std::endl;
-	for (int i = 0; i < numCourses; i++) {
-		std::cout << this->courses[i] << endl;
+	for (int i = 0; i < cs.numCourses; i++) {
+		out << cs.courses[i] << endl;
 	}
+
+	return out;
+}
+
+bool CourseSchedule::checkDates(Semester& sem, Date& start, Date& end) {
+	if (sem.getStartDate() < start && sem.getEndDate() > end)
+		return true;
+
+	return false;
 }
 #endif // !COURSESCHEDULE_CPP

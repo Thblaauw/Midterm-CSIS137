@@ -132,19 +132,19 @@ int Date::checkDay(int testDay) const
 //Armen: Operators below haven't been tested. 
 bool Date::operator>(const Date& date) const {
 	//Armen: Instructions say to compare by time. Think it's a typo.
-	if (this->year > date.year) {
+	if (this->year > date.getYear()) {
 		return true;
 	}
 
-	else if (this->year == date.year) {
-		if (this->month > date.month) {
+	else if (this->year == date.getYear()) {
+		if (this->month > date.getMonth()) {
 			return true;
 		}
 	}
 
-	else if (this->year == date.year){
-		if (this->month == date.month) {
-			if (this->day > date.month) {
+	else if (this->year == date.getYear()){
+		if (this->month == date.getMonth()) {
+			if (this->day > date.getDay()) {
 				return true;
 			}
 		}
