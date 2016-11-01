@@ -1,8 +1,8 @@
-#ifndef TIME_H
 //Team Sky.Net
 //CSIS 137
 //Midterm Project
 
+#ifndef TIME_H
 #define TIME_H
 
 using namespace std;
@@ -35,7 +35,7 @@ class Time
              
              //print functions - (normally always declared const since they do not modify private members, merely inspect
              void printUniversal() const;
-             void printStandard()const;
+             void printStandard() const;
 
 			 //Overload -operator:
 			 double operator-(const Time&);

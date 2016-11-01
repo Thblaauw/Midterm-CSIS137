@@ -1,34 +1,36 @@
+//Team Sky.Net
+//CSIS 137
+//Midterm Project
+
 #ifndef SEMESTER_H
 #define SEMESTER_H
 
-#include <string>
 #include "Date.h"
-#include <iostream>
 
 class Semester {
-
-	friend ostream& operator<<(ostream&, Semester&);
+	friend ostream& operator<<(ostream&, const Semester&);
 	friend istream& operator>>(istream&, Semester&);
 
+public:
+	//Constructor w/ 3 args:
+	Semester(const string& name = "Semester name not defined", 
+		     const Date& startDate = Date(), 
+		     const Date& endDate = Date());
+
+	//get & set functions:
+	string getName() const;
+	Semester& setName(const string&);
+	Date getStartDate() const;
+	Semester& setStartDate(const Date&);
+	Date getEndDate() const;
+	Semester& setEndDate(const Date&);
+
 private:
-	std::string name;
+	string name;
 	Date startDate;
 	Date endDate;
-
-public:
-	Semester(std::string = "Semester not defined", //name
-		Date& = Date(), //startDate
-		Date& = Date()); //endDate
-
-	~Semester();
-
-	std::string getName();
-	Semester& setName(std::string&);
-
-	Date getStartDate();
-	Semester& setStartDate(Date&);
-
-	Date getEndDate();
-	Semester& setEndDate(Date&);
 };
+
+
+
 #endif // !SEMESTER_H

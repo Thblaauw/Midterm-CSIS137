@@ -73,34 +73,18 @@ int Date::getYear() const
 	return year;
 }
 
-<<<<<<< HEAD
-//Armen: Instructions state that comparisons are based on hour and minutes. Shouldn't it be month, day, and year?
-//Armen: Operators below haven't been tested. 
-bool Date::operator>(const Date& date) const {
-	//Armen: Instructions say to compare by time. Think it's a typo.
-	if (this->year > date.getYear()) {
-=======
 bool Date::operator>(const Date& date) const
 {
 	if (this->year > date.year) {
->>>>>>> origin/master
 		return true;
 	}
 
-	else if (this->year == date.getYear()) {
-		if (this->month > date.getMonth()) {
+	else if (this->year == date.year) {
+		if (this->month > date.month) {
 			return true;
 		}
-<<<<<<< HEAD
-	}
-
-	else if (this->year == date.getYear()){
-		if (this->month == date.getMonth()) {
-			if (this->day > date.getDay()) {
-=======
 		else if (this->month == date.month) {
 			if (this->day > date.day) {
->>>>>>> origin/master
 				return true;
 			}
 		}

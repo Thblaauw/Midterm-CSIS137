@@ -19,35 +19,35 @@ class Course {
 public:
 
 	//constructor with 8 args:
-	Course(string courseNumber = "Course Number Undefined",
-		string courseName = "Course Name Undefined",
-		string meetingDays = "Meeting Days Undefined",
+	Course(const string& courseNumber = "Course Number Undefined",
+		const string& courseName = "Course Name Undefined",
+		const string& meetingDays = "Meeting Days Undefined",
 		int courseUnits = 0,
-		Date startDate = Date(),
-		Date endDate = Date(),
-		Time startTime = Time(),
-		Time endTime = Time());
+		const Date& startDate = Date(),
+		const Date& endDate = Date(),
+		const Time& startTime = Time(),
+		const Time& endTime = Time());
 
 	//destructor:
 	~Course();
 
 	//getters & setters:
 	string getCourseNumber() const;
-	Course& setCourseNumber(string&);
+	Course& setCourseNumber(const string&);
 	string getCourseName() const;
-	Course& setCourseName(string&);
+	Course& setCourseName(const string&);
 	string getMeetingDays() const;
-	Course& setMeetingDays(string&);
+	Course& setMeetingDays(const string&);
 	int getCourseUnits() const;
 	Course& setCourseUnits(int);
 	Date getStartDate() const;
-	Course& setStartDate(Date&);
+	Course& setStartDate(const Date&);
 	Date getEndDate() const;
-	Course& setEndDate(Date&);
+	Course& setEndDate(const Date&);
 	Time getStartTime() const;
-	Course& setStartTime(Time&);
+	Course& setStartTime(const Time&);
 	Time getEndTime() const;
-	Course& setEndTime(Time&);
+	Course& setEndTime(const Time&);
 
 	//utility functions:
 	double calcDailyDuration() const;
@@ -65,4 +65,3 @@ private:
 };
 
 #endif // !COURSE_H
-
