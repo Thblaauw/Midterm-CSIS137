@@ -1,38 +1,50 @@
-#ifndef COURSESCHEDULE_H
-#define COURSESCHEDULE_H
+//Team Sky.Net
+//CSIS 137
+//Midterm Project
 
-#include <string>
+#ifndef COURSE_SCHEDULE_H
+#define COURSE_SCHEDULE_H
+
 #include "Semester.h"
 #include "Course.h"
 
 class CourseSchedule {
 
-	friend std::ostream& operator<<(std::ostream&, CourseSchedule&);
-private:
-	std::string studentName;
-	Semester sem;
-	Course* courses;
-	int maxCourses;
-	int numCourses;
+	friend ostream& operator<<(ostream&, CourseSchedule&);
 
-	bool checkDates(Semester&, Date&, Date&);
 public:
-	CourseSchedule(std::string = "Student's Name undefined",
-				Semester& = Semester(),
-				int maxCourses = 0);
+	//constructor w/ 3 args: (studentName, semester, maxCourses)
+	CourseSchedule(const string& studentName = "Student name not initialized",
+		           const Semester& semester = Semester(), 
+		           int MAXCOURSES = 6);
+
+	//forbid copy constructor:
+	CourseSchedule(const CourseSchedule&) = delete;
+
+	//destructor:
 	~CourseSchedule();
 
-	CourseSchedule& setStudentName(std::string);
-	std::string getStudentName();
-
-	Semester& getSemester();
-
-	int getMaxCourses();
-
-	int getNumCourses();
-
-	bool addCourse(Course&);
+	//getters & setters:
+	string getStudentName() const;
+	CourseSchedule& setStudentName(const string&);
+	Semester getSemester() const;
+	int getNumCourses() const;
+	string getCourseName(int) const;
+	int getMAXCOURSES() const;
+	bool addCourse(const Course&);
 	bool removeCourse(int);
-	//void print();
+
+private:
+
+	string studentName;
+	Semester semester;
+	Course* coursePtr;
+	const int MAXCOURSES;
+	int numCourses = 0;
+
+	//utility functions:
+	bool checkDates(const Course&);
+
 };
-#endif // !COURSESCHEDULE_H
+#endif // !COURSE_SCHEDULE_H
+
