@@ -75,26 +75,18 @@ void Time::printStandard()const  //must be const since prototype is const
 double Time::operator-(const Time& time)
 {
 	//convert t1 and t2 to minutes:
-	int t1 = (time.getHour() * 60) + time.getMinute();
-	int t2 = (this->getHour() * 60) + this->getMinute();
+	
+	int minuend = (this->getHour() * 60) + this->getMinute();
+	int subtrahend = (time.getHour() * 60) + time.getMinute();
+	double difference = double(minuend - subtrahend);
 
 	//if t1 is greater than noon & larger than t2 (i.e. 4pm minus 2am)...
-	if ((t1 > 720) && (t1 > t2)) {
-		t1 = 1440 - t1;
-		double diff = double(t1 + t2) / 60;
-		return diff;
+	if (subtrahend  > minuend) {
+		difference += 1440;
 	}
 
-
-	else {
-		double diff = double(t1 - t2) / 60;
-		//if the result is negative (i.e. 12am - 12pm) -> (0 - 12) = -12
-		if (diff < 0) {
-			diff *= -1;
-		}
-
-		return diff;
-	}
+	return difference / 60;
+	
 }
 
 ostream& operator<<(ostream& output, const Time& time)
