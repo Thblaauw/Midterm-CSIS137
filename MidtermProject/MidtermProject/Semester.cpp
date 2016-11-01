@@ -1,73 +1,69 @@
-#ifndef SEMESTER_CPP
-#define SEMESTER_CPP
+//Team Sky.Net
+//CSIS 137
+//Midterm Project
 
 #include "Semester.h"
 #include <string>
 
-Semester::Semester(std::string n, //name
-	Date& startD, //startDate
-	Date& endD) //endDate
+Semester::Semester(const string& name, const Date& startDate, 
+	               const Date& endDate)
 {
-	this->setName(n);
-	this->setStartDate(startD);
-	this->setEndDate(endD);
+	this->name = name;
+	this->startDate = startDate;
+	this->endDate = endDate;
 }
 
-Semester::~Semester() {
-
-}
-
-//-------------------------------------------------------------------------------------
-//------------------------------------GETTERS AND SETTERS------------------------------
-//-------------------------------------------------------------------------------------
-std::string Semester::getName() {
+string Semester::getName() const
+{
 	return name;
 }
-Semester& Semester::setName(std::string& n) {
-	this->name = n;
+
+Semester& Semester::setName(const string& name)
+{
+	this->name = name;
 	return *this;
 }
 
-Date Semester::getStartDate() {
-	return (startDate);
+Date Semester::getStartDate() const
+{
+	return startDate;
 }
-Semester& Semester::setStartDate(Date& d) {
-	this->startDate = d;
+
+Semester & Semester::setStartDate(const Date& startDate)
+{
+	this->startDate = startDate;
 	return *this;
 }
 
-Date Semester::getEndDate() {
-	return (endDate);
+Date Semester::getEndDate() const
+{
+	return endDate;
 }
-Semester& Semester::setEndDate(Date& d) {
-	this->endDate = d;
+
+Semester& Semester::setEndDate(const Date& endDate)
+{
+	this->endDate = endDate;
 	return *this;
 }
-//------------------------------------------------------------------------------------
-//OPERATORS
 
-ostream& operator<<(ostream& out, Semester& sem) {
-	out << sem.getName() << "  (" << sem.getStartDate() << "-" << sem.getEndDate() << ")";
-
+ostream& operator<<(ostream& out, const Semester& s)
+{
+	out << s.getName() << "  (" << s.getStartDate() << " - " << s.getEndDate() << ")";
 	return out;
 }
-istream& operator>> (istream& in, Semester& sem) {
-	//cin.ignore(80, '\n');
-	std::cout << "Enter the Semester Name:";
-	std::string input;
-	getline(cin, input);
-	sem.setName(input);
-	std::cout << std::endl;
 
-	//cin.ignore(80, '\n');
-	std::cout << "Enter the starting date:";
-	std::cin >> (sem.startDate);
-	std::cout << std::endl;
+istream& operator>>(istream& in, Semester& s)
+{
+	string input;
+	cout << "Enter the Semester Name: " << endl;
+	getline(in, input);
+	s.name = input;
 
-	cin.ignore(80, '\n');
-	std::cout << "Enter the ending date:";
-	std::cin >> (sem.endDate);
+	cout << endl << "Enter the starting date: " << endl;
+	in >> s.startDate;
+
+	cout << endl << "Enter the ending date: " << endl;
+	in >> s.endDate;
 
 	return in;
 }
-#endif
